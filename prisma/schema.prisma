@@ -1,0 +1,141 @@
+// ResQX — Maharashtra Multi-Hazard Risk, Carrying Capacity & Relocation Platform
+// SQLite via Prisma. Scalars only (no list primitives — JSON encoded as strings).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// A surveyed habitation (village / ward) with real Maharashtra coordinates
+model Habitation {
+  id             String  @id
+  name           String
+  district       String
+  taluka         String
+  lat            Float
+  lng            Float
+  population     Int
+  households     Int
+  kutchaPct      Float // % kachcha (non-pucca) houses
+  scstPct        Float // % SC/ST population
+  literacyPct    Float
+  elevationM     Float
+  slopeDeg       Float
+  riverDistKm    Float
+  coastDistKm    Float
+  faultDistKm    Float
+  // per-hazard scores 0..100 (computed by engine at seed time)
+  flood          Float
+  landslide      Float
+  earthquake     Float
+  cyclone        Float
+  drought        Float
+  hazardScore    Float // weighted composite 0..100
+  vulnerability  Float // 0..1 socio-economic + housing
+  urgency        Float // 0..1 relocation urgency
+  riskLevel      String // high | medium | low | safe
+  priorityRank   Int
+  protectionScore Float // 0..100 insurance/protection coverage
+  waterSource    String
+  infraAccess    Float // 0..1
+  events         String // JSON string[] historical disaster events
+}
+
+/// Candidate safe relocation site with carrying capacity
+model SafeSite {
+  id             String  @id
+  name           String
+  district       String
+  taluka         String
+  lat            Float
+  lng            Float
+  landHa         Float
+  landUse        String
+  waterIndex     Float // 0..1
+  infraIndex     Float // 0..1
+  connectivityKm Float // km to nearest highway/town
+  capacity       Int // sustainable persons
+  amenities      String // JSON string[]
+  occupied       Int     @default(0)
+}
+
+/// Real-time alert / early warning
+model Alert {
+  id           String  @id
+  title        String
+  message      String
+  severity     String // critical | warning | advisory | watch
+  hazard       String
+  district     String
+  lat          Float?
+  lng          Float?
+  issuedAt     String
+  validUntil   String
+  source       String // IMD | SDMA | CWC | GDACS
+  active       Boolean @default(true)
+  instructions String
+}
+
+/// Citizen / field hazard report (crowd-sourced)
+model FieldReport {
+  id           String  @id
+  reporterName String
+  phone        String?
+  hazard       String
+  severity     String // critical | warning | advisory
+  description  String
+  lat          Float
+  lng          Float
+  district     String
+  place        String
+  status       String  @default("pending") // pending | verified | resolved
+  createdAt    String
+}
+
+/// Relief shelter
+model Shelter {
+  id         String  @id
+  name       String
+  type       String // school | community_hall | cyclone_shelter | camp
+  district   String
+  lat        Float
+  lng        Float
+  capacity   Int
+  occupancy  Int     @default(0)
+  facilities String // JSON string[]
+  contact    String
+  status     String  @default("available") // available | limited | full
+}
+
+/// Critical infrastructure item
+model InfraItem {
+  id             String  @id
+  name           String
+  type           String // hospital | fire_station | ambulance | water | road | bridge | dam | power
+  district       String
+  lat            Float
+  lng            Float
+  status         String // operational | degraded | damaged | at_risk
+  conditionScore Float // 0..100
+  lastAudit      String
+  note           String
+}
+
+/// Relief & rehabilitation project tracker
+model ReliefProject {
+  id            String @id
+  name          String
+  district      String
+  category      String // compensation | housing | infrastructure | livelihood
+  budgetCr      Float
+  spentCr       Float
+  beneficiaries Int
+  progressPct   Int
+  status        String // completed | ongoing | delayed | tendered
+  timeline      String
+  agency        String
+}

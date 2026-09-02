@@ -1,0 +1,13 @@
+{
+  "name": "ResQX — Disaster Management Platform",
+  "short_name": "ResQX",
+  "description": "Identify Risks. Assess Capacity. Prioritize Relocation. Save Lives. Maharashtra multi-hazard platform.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070d0b",
+  "theme_color": "#070d0b",
+  "orientation": "any",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
