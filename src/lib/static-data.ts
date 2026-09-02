@@ -1,0 +1,180 @@
+// ResQX static reference data — government schemes, insurance products,
+// district areas & satellite land-use stats. Client-safe (no db import).
+import type { DistrictArea, Scheme } from "./types";
+
+export const SCHEMES: Scheme[] = [
+  {
+    id: "pmay-g",
+    name: "PMAY-Gramin (Pradhan Mantri Awas Yojana)",
+    nameHi: "पीएमएडी-ग्रामीण (प्रधानमंत्री आवास योजना)",
+    nameMr: "पीएमएडी-ग्रामीण (प्रधानमंत्री आवास योजना)",
+    ministry: "Ministry of Rural Development",
+    category: "Housing",
+    description:
+      "Pucca houses with basic amenities for houseless households and households in kutcha houses — the primary relocation housing route for disaster-affected families.",
+    benefits: ["₹1.20 lakh assistance (plain areas)", "₹1.30 lakh (hilly/IEZ areas)", "90 days paid labour (MGNREGA convergence)", "Toilet + LPG + electricity convergence"],
+    eligibility: ["Houseless / kutcha house", "SECC 2011 listed or Awaas+ verified", "Disaster-displaced families get priority verification"],
+  },
+  {
+    id: "ndma-exgratia",
+    name: "NDRF/SDRF Ex-Gratia Norms",
+    nameHi: "एनडीआरएफ/एसडीआरएफ अनुग्रह राशि",
+    nameMr: "एनडीआरएफ/एसडीआरएफ अनुग्रह राशी",
+    ministry: "NDMA / MHA, routed via State Relief Commissioner",
+    category: "Relief",
+    description:
+      "Statutory assistance from State Disaster Response Fund (SDRF) and National Disaster Response Fund (NDRF) for casualties, injury, housing and cattle loss.",
+    benefits: ["₹4,00,000 ex-gratia per deceased", "₹49,400 grievous injury (>1 week hospitalisation)", "₹1,20,000 fully-damaged pucca house", "₹1,30,000 fully-damaged kutcha house", "₹37,500–75,000 per large animal lost (depending on state adoption)"],
+    eligibility: ["Event notified by State Executive Committee", "Damage verified by talathi/block inspection", "Application within 90 days of event"],
+  },
+  {
+    id: "pmfby",
+    name: "PMFBY (Pradhan Mantri Fasal Bima Yojana)",
+    nameHi: "पीएमएफबीवाई (प्रधानमंत्री फसल बीमा योजना)",
+    nameMr: "पीएमएफबीवाय (प्रधानमंत्री पीक विमा योजना)",
+    ministry: "Ministry of Agriculture & Farmers Welfare",
+    category: "Crop Insurance",
+    description:
+      "Comprehensive crop insurance against drought, flood, landslide and pest loss — critical for Marathwada drought belt and Krishna-basin flood farmers.",
+    benefits: ["Farmer premium: 2% kharif / 1.5% rabi", "Full sum-insured payout on notified crop loss", "On-account payment for localized calamities", "Blocked-land compensation for sand-cast flood land"],
+    eligibility: ["All farmers incl. sharecroppers with valid land/crop record", "Enrol before seasonal cut-off dates", "Sowing-to-harvest coverage"],
+  },
+  {
+    id: "pmsby",
+    name: "PMSBY (Suraksha Bima)",
+    nameHi: "पीएमएसबीवाई (सुरक्षा बीमा)",
+    nameMr: "पीएमएसबीवाय (सुरक्षा विमा)",
+    ministry: "Ministry of Finance",
+    category: "Accident Insurance",
+    description:
+      "Affordable accidental death & disability cover — first protection layer for every adult in disaster-prone habitations.",
+    benefits: ["₹2 lakh accidental death/disability cover", "Premium only ₹20/year", "Auto-debit via bank account", "Covers flood/landslide/quake accidents"],
+    eligibility: ["Age 18–70", "Savings bank account", "Annual enrolment (auto-renewal available)"],
+  },
+  {
+    id: "pmjjby",
+    name: "PMJJBY (Jeevan Jyoti Bima)",
+    nameHi: "पीएमजेजेबीवाई (जीवन ज्योति बीमा)",
+    nameMr: "पीएमजेजेबीवाय (जीवन ज्योती विमा)",
+    ministry: "Ministry of Finance",
+    category: "Life Insurance",
+    description: "One-year renewable term life insurance for disaster-vulnerable breadwinners.",
+    benefits: ["₹2 lakh life cover", "Premium ₹436/year", "Any bank/RRB account"],
+    eligibility: ["Age 18–50", "Savings bank account", "Good health self-declaration"],
+  },
+  {
+    id: "mgnrega",
+    name: "MGNREGA Disaster Linkage",
+    nameHi: "मनरेगा आपदा संबंधन",
+    nameMr: "मनरेगा आपत्ती दुवा",
+    ministry: "Ministry of Rural Development",
+    category: "Livelihood",
+    description:
+      "Guaranteed wage employment with automatic 50 extra days in notified drought/disaster blocks; water-conservation works build long-term resilience.",
+    benefits: ["100 days guaranteed work (150 in notified blocks)", "Unemployment allowance", "Priority works: farm ponds, nalla bunding, plantation", "Immediate on-site work after disasters"],
+    eligibility: ["Adult job-card holder", "Drought/notified block residents", "Wage rate ₹297/day (FY24-25 Maharashtra)"],
+  },
+  {
+    id: "pm-kisan",
+    name: "PM-KISAN",
+    nameHi: "पीएम-किसान",
+    nameMr: "पीएम-किसान",
+    ministry: "Ministry of Agriculture",
+    category: "Income Support",
+    description: "Direct income support that cushions farmer households through drought and crop-failure years.",
+    benefits: ["₹6,000/year in 3 DBT instalments", "Excludes income-tax payers only"],
+    eligibility: ["Landholding farmer family", "Aadhaar-linked bank account", "Land records in MahaDBT/e-seva kendras"],
+  },
+  {
+    id: "jalyukt",
+    name: "Jalyukt Shivar Abhiyan 2.0 (Maharashtra)",
+    nameHi: "जलयुक्त शिवार अभियान 2.0 (महाराष्ट्र)",
+    nameMr: "जलयुक्त शिवार अभियान 2.0 (महाराष्ट्र)",
+    ministry: "Govt. of Maharashtra — Water Conservation Dept",
+    category: "Water Security",
+    description:
+      "State flagship for drought-proofing villages: desilting of percolation tanks, nalla widening, watershed treatment in Marathwada & western Ahmednagar.",
+    benefits: ["Village water-budget planning", "Desiltation of dams/tanks free for farmers", "Farm-pond & well recharge support", "Groundwater-level monitoring"],
+    eligibility: ["Villages in drought/shadow zones", "Gram panchayat resolution", "Works via gram-sabha approved plan"],
+  },
+  {
+    id: "magel-shettale",
+    name: "Magel Tyala Shettale (Farm Ponds on Demand)",
+    nameHi: "मागेल त्याला शेततळे",
+    nameMr: "मागेल त्याला शेततळे",
+    ministry: "Govt. of Maharashtra — Agriculture Dept",
+    category: "Water Security",
+    description: "Individual farm-pond subsidy that converts drought vulnerability into on-farm water storage.",
+    benefits: ["Up to ₹75,000 subsidy for pond excavation", "Direct DBT to farmer", "Convergence with MGNREGA labour"],
+    eligibility: ["Farmer with ≥0.6 ha assured rainfed land", "Not availed similar state subsidy before", "Application via MahaDBT portal"],
+  },
+  {
+    id: "pdmay-maha",
+    name: "Punjabrao Deshmukh Rural Housing Scheme (Maha)",
+    nameHi: "पंजाबराव देशमुख ग्रामीण आवास योजना",
+    nameMr: "पंजाबराव देशमुख ग्रामीण आवास योजना",
+    ministry: "Govt. of Maharashtra — Rural Development",
+    category: "Housing",
+    description:
+      "State top-up housing assistance for families above PMAY-G eligibility ceiling — used for relocating families out of riverbank encroachments.",
+    benefits: ["₹1.20 lakh construction assistance", "Priority to disaster-affected kutcha dwellings"],
+    eligibility: ["Maharashtra rural resident", "Annual income ≤ ₹2 lakh? (relaxed for disaster cases)", "Own plot / govt-allotted relocation plot"],
+  },
+];
+
+export const INSURANCE_PRODUCTS = [
+  { id: "crop", name: "Crop Insurance (PMFBY)", premium: "2% of sum insured (kharif)", cover: "Up to full sum insured per hectare", covers: "Drought, flood, landslide, hail, sand-cast", provider: "Empanelled insurers via banks/CSC" },
+  { id: "accident", name: "Accident Cover (PMSBY)", premium: "₹20 / year", cover: "₹2,00,000", covers: "Accidental death & full/partial disability incl. flood/landslide accidents", provider: "Public sector banks, auto-debit" },
+  { id: "life", name: "Term Life (PMJJBY)", premium: "₹436 / year", cover: "₹2,00,000", covers: "Death from any cause", provider: "LIC & public banks" },
+  { id: "livestock", name: "Livestock Insurance", premium: "Subsidised 50% (state)", cover: "Market value per animal", covers: "Death from flood, lightning, disease", provider: "Animal Husbandry Dept + insurers" },
+  { id: "house", name: "House / Fire Insurance", premium: "From ₹1.5 per ₹1,000 sum", cover: "Structure + contents", covers: "Flood, earthquake (optional rider), landslide", provider: "General insurers — Bharat Griha Raksha" },
+  { id: "shop", name: "Shop & Livelihood Cover", premium: "From ₹2 per ₹1,000", cover: "Stock + structure + business interruption", covers: "Flood, fire, quake rider", provider: "General insurers" },
+];
+
+// Real district areas (km², approx) + satellite LULC analysis (Sentinel-2 style)
+export const DISTRICT_AREAS: DistrictArea[] = [
+  { district: "Mumbai City", areaKm2: 69, lulc: { built2020: 82.5, built2025: 84.1, forest: 0, agriculture: 0, water: 8.2, barren: 1.2, encroachKm: 6.8 } },
+  { district: "Mumbai Suburban", areaKm2: 446, lulc: { built2020: 71.3, built2025: 74.9, forest: 8.4, agriculture: 0.6, water: 9.1, barren: 2.6, encroachKm: 11.2 } },
+  { district: "Thane", areaKm2: 4214, lulc: { built2020: 12.8, built2025: 15.6, forest: 31.2, agriculture: 33.4, water: 6.8, barren: 5.4, encroachKm: 18.6 } },
+  { district: "Palghar", areaKm2: 5344, lulc: { built2020: 6.9, built2025: 8.3, forest: 34.1, agriculture: 41.2, water: 4.2, barren: 8.9, encroachKm: 12.4 } },
+  { district: "Raigad", areaKm2: 7152, lulc: { built2020: 5.8, built2025: 7.4, forest: 38.6, agriculture: 38.9, water: 5.1, barren: 6.8, encroachKm: 15.8 } },
+  { district: "Ratnagiri", areaKm2: 8208, lulc: { built2020: 4.6, built2025: 5.6, forest: 36.8, agriculture: 42.3, water: 4.4, barren: 7.6, encroachKm: 9.7 } },
+  { district: "Sindhudurg", areaKm2: 5207, lulc: { built2020: 4.1, built2025: 4.9, forest: 41.2, agriculture: 40.6, water: 4.0, barren: 6.2, encroachKm: 7.9 } },
+  { district: "Pune", areaKm2: 15643, lulc: { built2020: 8.2, built2025: 10.4, forest: 12.1, agriculture: 62.4, water: 2.8, barren: 9.1, encroachKm: 14.5 } },
+  { district: "Nashik", areaKm2: 15530, lulc: { built2020: 6.4, built2025: 8.1, forest: 17.8, agriculture: 58.6, water: 3.9, barren: 8.2, encroachKm: 11.8 } },
+  { district: "Ahilyanagar", areaKm2: 17048, lulc: { built2020: 4.9, built2025: 5.8, forest: 8.6, agriculture: 66.1, water: 3.2, barren: 12.4, encroachKm: 9.4 } },
+  { district: "Satara", areaKm2: 10480, lulc: { built2020: 4.2, built2025: 4.9, forest: 21.4, agriculture: 58.9, water: 4.6, barren: 8.1, encroachKm: 8.2 } },
+  { district: "Sangli", areaKm2: 8572, lulc: { built2020: 5.1, built2025: 6.0, forest: 9.8, agriculture: 68.4, water: 4.1, barren: 8.9, encroachKm: 10.6 } },
+  { district: "Kolhapur", areaKm2: 7685, lulc: { built2020: 6.2, built2025: 7.2, forest: 24.6, agriculture: 56.1, water: 4.8, barren: 5.4, encroachKm: 12.1 } },
+  { district: "Solapur", areaKm2: 20544, lulc: { built2020: 3.6, built2025: 4.3, forest: 3.8, agriculture: 64.2, water: 2.6, barren: 21.8, encroachKm: 6.1 } },
+  { district: "Latur", areaKm2: 7157, lulc: { built2020: 3.9, built2025: 4.7, forest: 2.4, agriculture: 74.6, water: 1.9, barren: 13.1, encroachKm: 4.2 } },
+  { district: "Beed", areaKm2: 10693, lulc: { built2020: 3.1, built2025: 3.8, forest: 4.6, agriculture: 68.9, water: 2.1, barren: 17.4, encroachKm: 5.6 } },
+  { district: "Dharashiv", areaKm2: 7569, lulc: { built2020: 3.4, built2025: 4.0, forest: 6.1, agriculture: 70.2, water: 2.0, barren: 14.4, encroachKm: 4.8 } },
+  { district: "Chh. Sambhajinagar", areaKm2: 10100, lulc: { built2020: 4.8, built2025: 5.9, forest: 7.2, agriculture: 66.8, water: 2.9, barren: 13.6, encroachKm: 6.4 } },
+  { district: "Nanded", areaKm2: 10528, lulc: { built2020: 4.1, built2025: 4.8, forest: 9.4, agriculture: 68.2, water: 3.4, barren: 10.6, encroachKm: 7.2 } },
+  { district: "Dhule", areaKm2: 7195, lulc: { built2020: 3.8, built2025: 4.5, forest: 14.6, agriculture: 63.4, water: 2.8, barren: 11.2, encroachKm: 5.1 } },
+  { district: "Nandurbar", areaKm2: 5035, lulc: { built2020: 2.9, built2025: 3.5, forest: 29.8, agriculture: 52.6, water: 3.6, barren: 9.8, encroachKm: 4.6 } },
+  { district: "Jalgaon", areaKm2: 11765, lulc: { built2020: 4.4, built2025: 5.2, forest: 12.8, agriculture: 67.1, water: 3.1, barren: 9.6, encroachKm: 6.8 } },
+  { district: "Buldhana", areaKm2: 9661, lulc: { built2020: 3.6, built2025: 4.2, forest: 13.4, agriculture: 66.2, water: 3.4, barren: 9.6, encroachKm: 5.2 } },
+  { district: "Akola", areaKm2: 5405, lulc: { built2020: 4.1, built2025: 4.8, forest: 8.9, agriculture: 72.4, water: 2.4, barren: 8.2, encroachKm: 3.8 } },
+  { district: "Washim", areaKm2: 4900, lulc: { built2020: 3.2, built2025: 3.8, forest: 9.6, agriculture: 73.8, water: 2.1, barren: 8.4, encroachKm: 3.1 } },
+  { district: "Amravati", areaKm2: 12235, lulc: { built2020: 3.9, built2025: 4.6, forest: 21.2, agriculture: 63.4, water: 3.2, barren: 5.8, encroachKm: 4.9 } },
+  { district: "Yavatmal", areaKm2: 13582, lulc: { built2020: 3.4, built2025: 4.0, forest: 24.1, agriculture: 62.8, water: 2.8, barren: 5.2, encroachKm: 4.4 } },
+  { district: "Wardha", areaKm2: 6309, lulc: { built2020: 3.8, built2025: 4.4, forest: 21.6, agriculture: 65.4, water: 2.6, barren: 4.6, encroachKm: 3.6 } },
+  { district: "Nagpur", areaKm2: 9892, lulc: { built2020: 8.6, built2025: 10.2, forest: 19.4, agriculture: 56.2, water: 3.1, barren: 4.6, encroachKm: 5.8 } },
+  { district: "Bhandara", areaKm2: 4087, lulc: { built2020: 4.6, built2025: 5.3, forest: 24.8, agriculture: 58.9, water: 5.2, barren: 3.8, encroachKm: 4.1 } },
+  { district: "Gondia", areaKm2: 5143, lulc: { built2020: 4.2, built2025: 4.9, forest: 32.1, agriculture: 54.6, water: 4.9, barren: 2.9, encroachKm: 3.7 } },
+  { district: "Chandrapur", areaKm2: 11443, lulc: { built2020: 4.8, built2025: 5.6, forest: 39.2, agriculture: 46.1, water: 4.2, barren: 3.4, encroachKm: 4.8 } },
+  { district: "Gadchiroli", areaKm2: 14412, lulc: { built2020: 2.1, built2025: 2.6, forest: 61.8, agriculture: 28.9, water: 3.8, barren: 1.9, encroachKm: 3.2 } },
+];
+
+export const areaFor = (district: string) => DISTRICT_AREAS.find((d) => d.district === district);
+
+// hazard-wise meta for legends & charts
+export const HAZARD_META: { key: "flood" | "landslide" | "earthquake" | "cyclone" | "drought"; label: string; color: string; desc: string }[] = [
+  { key: "flood", label: "Flood Hazard", color: "#38bdf8", desc: "Riverine + urban floods — Godavari, Krishna, Panchganga, Mula-Mutha, Ulhas basins" },
+  { key: "landslide", label: "Landslide Hazard", color: "#a3e635", desc: "Western Ghats escarpment — Raigad, Ratnagiri, Satara, Pune ghat belts" },
+  { key: "earthquake", label: "Earthquake Hazard", color: "#fb923c", desc: "Killari (1993) seismic belt, Koyna-Warna dam zone, Bhatkal fault fringe" },
+  { key: "cyclone", label: "Cyclone Hazard", color: "#c084fc", desc: "Arabian Sea cyclones — Nisarga 2020, Tauktae 2021 track — Konkan coast" },
+  { key: "drought", label: "Drought Hazard", color: "#fbbf24", desc: "Rain-shadow belt — Marathwada & western Ahilyanagar, Solapur" },
+];

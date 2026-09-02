@@ -1,0 +1,274 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  /* ResQX dark emerald government theme */
+  --background: #070d0b;
+  --foreground: #e7f0ec;
+  --card: #0c1411;
+  --card-foreground: #e7f0ec;
+  --popover: #0d1714;
+  --popover-foreground: #e7f0ec;
+  --primary: #10b981;
+  --primary-foreground: #04140d;
+  --secondary: #12201b;
+  --secondary-foreground: #d3e5dd;
+  --muted: #101a16;
+  --muted-foreground: #8aa79b;
+  --accent: #122720;
+  --accent-foreground: #6ee7b7;
+  --destructive: #ef4444;
+  --border: rgba(16, 185, 129, 0.14);
+  --input: rgba(16, 185, 129, 0.18);
+  --ring: #10b981;
+  --chart-1: #ef4444;
+  --chart-2: #f97316;
+  --chart-3: #eab308;
+  --chart-4: #10b981;
+  --chart-5: #34d399;
+  --sidebar: #0a1210;
+  --sidebar-foreground: #cfe0d8;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #04140d;
+  --sidebar-accent: #11241d;
+  --sidebar-accent-foreground: #6ee7b7;
+  --sidebar-border: rgba(16, 185, 129, 0.12);
+  --sidebar-ring: #10b981;
+  --risk-high: #ef4444;
+  --risk-medium: #f97316;
+  --risk-low: #eab308;
+  --risk-safe: #10b981;
+}
+
+.dark {
+  --background: #070d0b;
+  --foreground: #e7f0ec;
+  --card: #0c1411;
+  --card-foreground: #e7f0ec;
+  --popover: #0d1714;
+  --popover-foreground: #e7f0ec;
+  --primary: #10b981;
+  --primary-foreground: #04140d;
+  --secondary: #12201b;
+  --secondary-foreground: #d3e5dd;
+  --muted: #101a16;
+  --muted-foreground: #8aa79b;
+  --accent: #122720;
+  --accent-foreground: #6ee7b7;
+  --destructive: #ef4444;
+  --border: rgba(16, 185, 129, 0.14);
+  --input: rgba(16, 185, 129, 0.18);
+  --ring: #10b981;
+  --chart-1: #ef4444;
+  --chart-2: #f97316;
+  --chart-3: #eab308;
+  --chart-4: #10b981;
+  --chart-5: #34d399;
+  --sidebar: #0a1210;
+  --sidebar-foreground: #cfe0d8;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #04140d;
+  --sidebar-accent: #11241d;
+  --sidebar-accent-foreground: #6ee7b7;
+  --sidebar-border: rgba(16, 185, 129, 0.12);
+  --sidebar-ring: #10b981;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-space-grotesk), var(--font-inter), sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ---------- ResQX utilities ---------- */
+
+.font-display {
+  font-family: var(--font-space-grotesk), var(--font-inter), sans-serif;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(18, 32, 27, 0.55), rgba(10, 18, 15, 0.85));
+  border: 1px solid rgba(16, 185, 129, 0.14);
+  border-radius: 0.75rem;
+}
+
+.panel-hover {
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.panel-hover:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 8px 30px -12px rgba(16, 185, 129, 0.25);
+}
+
+.glow-primary {
+  box-shadow: 0 0 24px -6px rgba(16, 185, 129, 0.5);
+}
+
+.text-gradient {
+  background: linear-gradient(92deg, #10b981 0%, #6ee7b7 55%, #d1fae5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.risk-grid-bg {
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(16, 185, 129, 0.35) transparent;
+}
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.35);
+  border-radius: 9999px;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.6);
+}
+
+/* Leaflet dark-theme tweaks */
+.leaflet-container {
+  background: #0a1210 !important;
+  font-family: var(--font-inter), sans-serif;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #0d1714 !important;
+  color: #e7f0ec !important;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+}
+.leaflet-popup-close-button {
+  color: #8aa79b !important;
+}
+.leaflet-control-zoom a {
+  background: #0d1714 !important;
+  color: #6ee7b7 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+.leaflet-control-zoom a:hover {
+  background: #11241d !important;
+}
+.leaflet-control-attribution {
+  background: rgba(7, 13, 11, 0.7) !important;
+  color: #5b7268 !important;
+  font-size: 9px !important;
+}
+.leaflet-control-attribution a {
+  color: #4d8a72 !important;
+}
+.resqx-marker-label {
+  background: rgba(13, 23, 20, 0.92);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #e7f0ec;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+/* print styles for government reports */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    inset: 0;
+    background: white !important;
+    color: black !important;
+    padding: 32px;
+  }
+  .print-area .text-gradient {
+    -webkit-text-fill-color: black;
+    color: black;
+  }
+}
+
+/* pulse animation for live alerts */
+@keyframes resqx-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.animate-pulse-dot {
+  animation: resqx-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes resqx-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(220%); }
+}
+.sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(110, 231, 183, 0.12) 50%, transparent 60%);
+  animation: resqx-sweep 2.8s ease-in-out infinite;
+}
